@@ -7,13 +7,21 @@
     tools:context=".service">
 
     <Button
-        android:onClick="onClickDelAll"
         android:id="@+id/delAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="delAll"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="onClickDelAll"
+        android:text="@string/delAll"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:onClick="testContent"
+        android:id="@+id/testContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/testContent"
+        app:layout_constraintStart_toEndOf="@+id/delAll"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

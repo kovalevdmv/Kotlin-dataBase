@@ -78,7 +78,6 @@ class dbHelper(val context: Context, factory: SQLiteDatabase.CursorFactory?) : S
             Log.println(Log.ERROR,"cursor_getfg",e.toString())
             return ""
         }
-
     }
 
     fun allDel(){
