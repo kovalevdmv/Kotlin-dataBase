@@ -19,12 +19,34 @@ class listWords : AppCompatActivity() {
         val dbHnd = dbHelper(this, null)
         val cursor = dbHnd.getAllWords()
         cursor!!.moveToFirst()
-        words.add(WordData(dbHnd.cursor_get(cursor,"rus"), dbHnd.cursor_get(cursor,"eng")))
+        words.add(
+                WordData(dbHnd.cursor_get(cursor,"rus"),
+                    dbHnd.cursor_get(cursor,"eng"),
+                    forInt(dbHnd.cursor_get(cursor,"id")),
+                    forInt(dbHnd.cursor_get(cursor,"ok")),
+                        forInt(dbHnd.cursor_get(cursor,"err"))
+                )
+        )
         while (cursor.moveToNext()) {
-            words.add(WordData(cursor.getString(cursor.getColumnIndex("rus")), cursor.getString(cursor.getColumnIndex("eng"))))
+            words.add(
+                WordData(dbHnd.cursor_get(cursor,"rus"),
+                    dbHnd.cursor_get(cursor,"eng"),
+                    forInt(dbHnd.cursor_get(cursor,"id")),
+                    forInt(dbHnd.cursor_get(cursor,"ok")),
+                    forInt(dbHnd.cursor_get(cursor,"err"))
+                )
+            )
         }
         cursor.close()
         list.adapter = adapterForView(words, this)
+    }
+
+    fun forInt(s:String):Int{
+        if (s.isEmpty())
+            return 0
+           else
+            return s.toInt()
+
     }
 
 

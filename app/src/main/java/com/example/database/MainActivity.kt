@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     fun addonClick(view: View) {
         val dbHlp = dbHelper(this, null)
-        val word = WordData(rus.text.toString(), eng.text.toString())
+        val word = WordData(rus.text.toString(), eng.text.toString(),0,0,0)
         dbHlp.addWord(word)
     }
 
