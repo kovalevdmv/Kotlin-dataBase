@@ -50,13 +50,13 @@ class dbHelper(val context: Context, factory: SQLiteDatabase.CursorFactory?) : S
                     "W.id AS id, " +
                     "W.rus AS rus, " +
                     "W.eng AS eng, " +
-                    "SUM(S.ok) AS ok, " +
-                    "SUM(S.err) AS err " +
+                    "SUM(IFNULL(S.ok,0)) AS ok, " +
+                    "SUM(IFNULL(S.err,0)) AS err " +
                     "FROM words AS W " +
                     "LEFT JOIN stats AS S " +
                     "ON W.id = S.id_word " +
                     "GROUP BY W.id,W.rus,W.eng " +
-                    "HAVING SUM(S.ok)<=5", null)
+                    "HAVING SUM(IFNULL(S.ok,0))<=5", null)
         return r;
     }
 
