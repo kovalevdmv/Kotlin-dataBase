@@ -17,13 +17,17 @@ class MainActivity : AppCompatActivity() {
     fun addonClick(view: View) {
         val dbHlp = dbHelper(this, null)
         val word = WordData(rus.text.toString(), eng.text.toString())
-        val addStatus = dbHlp.addWord(word)
-        Toast.makeText(this, addStatus.toString(), Toast.LENGTH_SHORT).show()
+        dbHlp.addWord(word)
     }
 
     fun onShowList(view: View) {
         val list = Intent(this, listWords::class.java )
         startActivity(list)
+    }
+
+    fun onClickService(view: View) {
+        val act = Intent(this, service::class.java )
+        startActivity(act)
     }
 
 }

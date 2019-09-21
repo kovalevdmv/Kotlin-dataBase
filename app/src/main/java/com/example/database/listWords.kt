@@ -16,10 +16,10 @@ class listWords : AppCompatActivity() {
 
         var words : ArrayList<WordData> = ArrayList()
 
-        val dbHandler = dbHelper(this, null)
-        val cursor = dbHandler.getAllWords()
+        val dbHnd = dbHelper(this, null)
+        val cursor = dbHnd.getAllWords()
         cursor!!.moveToFirst()
-        words.add(WordData(cursor_get(cursor,"rus"), cursor_get(cursor,"eng")))
+        words.add(WordData(dbHnd.cursor_get(cursor,"rus"), dbHnd.cursor_get(cursor,"eng")))
         while (cursor.moveToNext()) {
             words.add(WordData(cursor.getString(cursor.getColumnIndex("rus")), cursor.getString(cursor.getColumnIndex("eng"))))
         }
@@ -27,7 +27,5 @@ class listWords : AppCompatActivity() {
         list.adapter = adapterForView(words, this)
     }
 
-    fun cursor_get (cursor:Cursor?, Name:String):String{
-       return cursor?.getString(cursor.getColumnIndex("rus")) ?: ""
-    }
+
 }

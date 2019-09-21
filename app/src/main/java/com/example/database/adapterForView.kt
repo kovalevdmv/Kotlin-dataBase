@@ -17,6 +17,12 @@ class adapterForView(val items : ArrayList<WordData>, val context: Context) : Re
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.rus.text = items.get(position).rus
         holder.eng.text = items.get(position).eng
+        val dbHlp = dbHelper(context, null)
+        val variation = dbHlp.getVariation()
+        holder.var1.text = variation[0].eng
+        holder.var2.text = variation[1].eng
+        holder.var3.text = variation[2].eng
+        holder.var4.text = variation[3].eng
 //        holder.eng.setOnClickListener {
 //            holder.element.text="123"
 //        }
@@ -29,5 +35,10 @@ class adapterForView(val items : ArrayList<WordData>, val context: Context) : Re
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         val rus = view.rus
         val eng = view.eng
+        val var1 = view.var1
+        val var2 = view.var2
+        val var3 = view.var3
+        val var4 = view.var4
+
     }
 }
