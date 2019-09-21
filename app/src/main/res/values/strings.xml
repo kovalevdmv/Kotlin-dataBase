@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">dataBase</string>
+    <string name="add">Добавить</string>
+    <string name="rus">Русское слово</string>
+    <string name="eng">Английское слово</string>
+    <string name="showList">Показать список</string>
 </resources>
