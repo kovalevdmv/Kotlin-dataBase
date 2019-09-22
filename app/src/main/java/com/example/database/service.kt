@@ -46,6 +46,9 @@ class service : AppCompatActivity() {
     }
 
     fun addTestContent(){
+
+        Toast.makeText(this, "Добавление....", Toast.LENGTH_LONG)
+
         val dbHlp = dbHelper(this, null)
         val list = ArrayList<WordData>()
 
@@ -323,12 +326,14 @@ class service : AppCompatActivity() {
             var added:Int=0
             for (line in File(data?.data?.path?.split(":")?.get(1)).readLines()) {
                 val w = line.split(";")
-                val r = dbHelp.addWord(WordData(w[0],w[1]))
+                if (w.size<2) continue
+                val r = dbHelp.addWord(WordData(w[1],w[0]))
                 if (r==dbHelper.ADD_STATUS.ADDED)
                     added++
             }
             Toast.makeText(this, "Добалено $added слов", Toast.LENGTH_SHORT)
         } catch (e : Exception){
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT)
         }
     }
 
