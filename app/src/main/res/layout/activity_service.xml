@@ -8,20 +8,29 @@
 
     <Button
         android:id="@+id/delAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:onClick="onClickDelAll"
         android:text="@string/delAll"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:onClick="testContent"
         android:id="@+id/testContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:onClick="testContent"
         android:text="@string/testContent"
-        app:layout_constraintStart_toEndOf="@+id/delAll"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delAll" />
+
+    <Button
+        android:id="@+id/loadFromFile"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:onClick="onClickloadFromFile"
+        android:text="@string/loadFromFile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/testContent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,18 @@
 package com.example.database
 
+import android.Manifest
+import android.app.AlertDialog
+import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import java.io.File
+import java.lang.Exception
+
 
 class service : AppCompatActivity() {
 
@@ -12,15 +22,31 @@ class service : AppCompatActivity() {
     }
 
     fun onClickDelAll(view: View) {
-        val dbHlp = dbHelper(this, null)
-        dbHlp.allDel()
 
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Удалить все слова?")
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            val dbHlp = dbHelper(this, null)
+            dbHlp.allDel()
+        }
+        builder.show()
     }
 
     fun testContent(view: View) {
 
-        val dbHlp = dbHelper(this, null)
+        var ret : Boolean = false
 
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Добавить тестовый набор слов?")
+        builder.setNegativeButton(android.R.string.no) { dialog, which -> ret=true}
+        builder.setPositiveButton(android.R.string.yes) { dialog, which -> addTestContent()}
+        builder.show()
+        if (ret)
+            return
+    }
+
+    fun addTestContent(){
+        val dbHlp = dbHelper(this, null)
         val list = ArrayList<WordData>()
 
         list.add(WordData("определенный артикль","the [ðə:]"))
@@ -276,6 +302,54 @@ class service : AppCompatActivity() {
 
         for (w in list)
             dbHlp.addWord(w)
+    }
+
+    var FILE_SELECT_CODE : Int = 0;
+    fun loadFromFile() {
+        var intent = Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        try {
+            startActivityForResult( Intent.createChooser(intent, "Select a File to Upload"), FILE_SELECT_CODE);
+        } catch (ex : Exception) {
+            Toast.makeText(this, "Please install a File Manager.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        try {
+            val dbHelp = dbHelper(this, null)
+            var added:Int=0
+            for (line in File(data?.data?.path?.split(":")?.get(1)).readLines()) {
+                val w = line.split(";")
+                val r = dbHelp.addWord(WordData(w[0],w[1]))
+                if (r==dbHelper.ADD_STATUS.ADDED)
+                    added++
+            }
+            Toast.makeText(this, "Добалено $added слов", Toast.LENGTH_SHORT)
+        } catch (e : Exception){
+        }
+    }
+
+    fun setupPermissions() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+            != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            } else {
+                ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    1)
+            }
+        } else {
+        }
+    }
+
+    fun onClickloadFromFile(view: View) {
+        setupPermissions()
+        loadFromFile()
 
     }
 }

@@ -11,4 +11,5 @@
     <string name="btnService">Сервис</string>
     <string name="delAll">Удалить все</string>
     <string name="testContent">Заполнить тестовыми данными</string>
+    <string name="loadFromFile">Загрузить из файла</string>
 </resources>

@@ -20,49 +20,50 @@
         tools:layout_editor_absoluteX="61dp" />
 
     <EditText
-        android:hint="@string/eng"
         android:id="@+id/eng"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginBottom="148dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/back"
+        android:hint="@string/eng"
         android:padding="5pt"
         app:layout_constraintBottom_toTopOf="@+id/add"
-        tools:layout_editor_absoluteX="48dp" />
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/add"
-        android:layout_width="168dp"
-        android:layout_height="97dp"
-        android:layout_marginBottom="316dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="156dp"
         android:onClick="addonClick"
         android:text="@string/add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/eng"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/showList"
-        android:layout_width="202dp"
-        android:layout_height="84dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:onClick="onShowList"
         android:text="@string/showList"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add"
-        app:layout_constraintVertical_bias="0.48" />
+        app:layout_constraintVertical_bias="0.388" />
 
     <Button
-        android:onClick="onClickService"
         android:id="@+id/btnService"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_marginBottom="4dp"
+        android:onClick="onClickService"
         android:text="@string/btnService"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showList"
+        app:layout_constraintVertical_bias="0.756" />
 </androidx.constraintlayout.widget.ConstraintLayout>
