@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutWord"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="480dp"
     android:background="@drawable/back"
     tools:context=".Word"
     android:layout_marginBottom="5pt"
@@ -24,6 +24,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+
         android:id="@+id/eng"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,7 +43,7 @@
         android:layout_height="30pt"
         android:text="@string/var1"
         app:layout_constraintBottom_toTopOf="@+id/var2"
-        tools:layout_editor_absoluteX="2dp" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/var2"
@@ -64,9 +65,21 @@
         android:id="@+id/var4"
         android:layout_width="match_parent"
         android:layout_height="30pt"
+        android:layout_marginBottom="76dp"
         android:text="@string/var4"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/openWeb"
+        android:layout_width="match_parent"
+        android:layout_height="30pt"
+        android:onClick="onClickOpenWeb"
+        android:text="Открыть в wooordhunt.ru"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/var4" />
 
     <TextView
         android:id="@+id/idWord"

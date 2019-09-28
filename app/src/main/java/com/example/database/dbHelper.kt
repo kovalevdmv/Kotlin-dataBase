@@ -30,7 +30,10 @@ class dbHelper(val context: Context, factory: SQLiteDatabase.CursorFactory?) : S
 
     fun addWord(word:WordData) : ADD_STATUS {
         if (getWordByRus(word.rus)?.count ?:0 > 0) {
-            Toast.makeText(context, "Такое слово уже есть", Toast.LENGTH_SHORT).show()
+            try {
+                Toast.makeText(context, "Такое слово уже есть", Toast.LENGTH_SHORT).show()
+            } catch (e:Exception) {
+            }
             return ADD_STATUS.EXIST
         }
         val values = ContentValues()
@@ -39,7 +42,11 @@ class dbHelper(val context: Context, factory: SQLiteDatabase.CursorFactory?) : S
         val db = this.writableDatabase
         db.insert("words", null, values)
         db.close()
-        Toast.makeText(context, "Добавлено новое слово", Toast.LENGTH_SHORT).show()
+        try {
+            Toast.makeText(context, "Добавлено новое слово", Toast.LENGTH_SHORT).show()
+        } catch (e:Exception) {
+
+        }
         return ADD_STATUS.ADDED
     }
 
@@ -95,7 +102,13 @@ class dbHelper(val context: Context, factory: SQLiteDatabase.CursorFactory?) : S
         val db = this.readableDatabase
         db.execSQL("DELETE FROM words")
         db.execSQL("DELETE FROM stats")
-        Toast.makeText(context, "all delete", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Удалены все слова", Toast.LENGTH_SHORT).show()
+    }
+
+    fun delStats(){
+        val db = this.readableDatabase
+        db.execSQL("DELETE FROM stats")
+        Toast.makeText(context, "Статистика удалена", Toast.LENGTH_SHORT).show()
     }
 
     // ans: 0-err 1-ok

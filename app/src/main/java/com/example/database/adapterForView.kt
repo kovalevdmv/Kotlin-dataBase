@@ -1,12 +1,16 @@
 package com.example.database
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_service.view.*
 import kotlinx.android.synthetic.main.activity_word.view.*
 import java.lang.Exception
 import kotlin.math.nextUp
@@ -38,6 +42,13 @@ class adapterForView(val items : ArrayList<WordData>, val context: Context) : Re
         holder.var2.setOnClickListener {Check(variation[1].rus, items.get(position).rus, holder)}
         holder.var3.setOnClickListener {Check(variation[2].rus, items.get(position).rus, holder)}
         holder.var4.setOnClickListener {Check(variation[3].rus, items.get(position).rus, holder)}
+
+        holder.openWeb.setOnClickListener {
+            val uris = Uri.parse("https://wooordhunt.ru/word/" + holder.eng.text)
+            val intents = Intent(Intent.ACTION_VIEW, uris)
+            context.startActivity(intents)
+        }
+
     }
 
     fun Check(s1:String, s2:String, holder:ViewHolder){
@@ -69,5 +80,6 @@ class adapterForView(val items : ArrayList<WordData>, val context: Context) : Re
         val idWord = view.idWord
         val layoutWord = view.layoutWord
         val info = view.info
+        val openWeb = view.openWeb
     }
 }
