@@ -132,7 +132,7 @@ class service : AppCompatActivity() {
     fun onClickLoadFromHTTP(view:View){
         doAsync {
             try {
-                val str = URL("http://192.168.0.108:8080").readText(Charset.forName("UTF-8"))
+                val str = URL("http","192.168.0.108",8080,"words").readText(Charset.forName("UTF-8"))
                 val dbHelp = dbHelper(this, null)
                 for (line in str.lines()) {
                     val w = line.split(";")
@@ -156,7 +156,7 @@ class service : AppCompatActivity() {
 
         override fun onPostExecute(res_add: res_add) {
             super.onPostExecute(res_add)
-            Toast.makeText(res_add.context, "Добавлено: ${res_add.added}.${res_add.comment}", Toast.LENGTH_LONG).show()
+            Toast.makeText(res_add.context, "Добавлено: ${res_add.added}\n${res_add.comment}", Toast.LENGTH_LONG).show()
         }
     }
 }
